@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	*{padding:0;margin:0;}
+	#box{width:300px;height:300px;border:2px solid #000;border-radius:50%;margin:100px auto;position:relative;top:0;left:0;}
+	.hou{width:6px;height:100px;position:absolute;left:50%;top:50px;margin-left:-3px;background:#000;-webkit-transform-origin:center 100px;}
+	.min{width:4px;height:120px;position:absolute;left:50%;top:30px;margin-left:-2px;background:#000;-webkit-transform-origin:center 120px;}
+	.sec{width:2px;height:140px;position:absolute;left:50%;top:10px;margin-left:-1px;background:#000;-webkit-transform-origin:center 140px;}
+	.scale{width:2px;height:6px;display:block;background:#000;-webkit-transform-origin:center 150px;position:absolute;left:50%;margin-left:-1px;top:0;}
+	.big_scale{width:4px;height:10px;display:block;background:#000;-webkit-transform-origin:center 150px;position:absolute;left:50%;margin-left:-1px;top:0;}
+	em{font-style:normal;display:block;width:20px;height:20px;text-align:center;position:absolute;left:50%;margin-left:-10px;top:10px;}
+	.center{width:10px;height:10px;border-radius:50%;background:#000;position:absolute;left:50%;top:50%;margin-left:-5px;margin-top:-5px;}
+	
+</style>
+<script>
+	window.onload=function(){
+		var oBox=document.getElementById('box');
+		var oHou=oBox.children[0];	
+		var oMin=oBox.children[1];	
+		var oSec=oBox.children[2];
+		for(var i=0;i<60;i++){
+			var oSpan=document.createElement('span');
+			
+			if(i%5==0){
+				oSpan.className='big_scale';
+				var oEm=document.createElement('em');
+				oEm.style.WebkitTransform='rotate('+-i*6+'deg)';
+				oSpan.appendChild(oEm);
+				oEm.innerHTML=i/5;
+			}else{
+				oSpan.className='scale';
+				
+			}
+			oSpan.style.WebkitTransform='rotate('+i*6+'deg)';
+			oBox.appendChild(oSpan);
+		}
+		function tick(){
+			var oDate=new Date();
+			oHou.style.WebkitTransform='rotate('+(oDate.getHours()+oDate.getMinutes()/60)*30+'deg)';	
+			oMin.style.WebkitTransform='rotate('+(oDate.getMinutes()+oDate.getSeconds()/60)*6+'deg)';	
+			oSec.style.WebkitTransform='rotate('+oDate.getSeconds()*6+'deg)';	
+		}	
+		tick();
+		setInterval(tick,1000);
+	};
+</script>
+</head>
+
+<body>
+	<div id="box">
+    	<div class="center"></div>
+    	<div class="hou"></div>
+        <div class="min"></div>
+        <div class="sec"></div>
+    </div>
+</body>
+</html>
