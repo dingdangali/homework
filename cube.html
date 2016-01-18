@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	*{padding:0;margin:0;}
+	#box{width:300px;height:300px;margin:100px auto;-webkit-transform:perspective(800px) rotateX(0deg) rotateY(0deg);position:relative;left:0;top:0;-webkit-transform-style:preserve-3d;line-height:300px;text-align:center;-webkit-transition:1s all ease;}
+	#box div{width:300px;height:300px;opacity:0.5;position:absolute;}
+	.back{background:red;-webkit-transform:translateZ(-150px);}
+	.left{background:yellow;-webkit-transform:translateZ(150px) rotateY(90deg);-webkit-transform-origin:left center;}
+	.top{background:blue;-webkit-transform:translateZ(-150px) rotateX(90deg);-webkit-transform-origin:top center;}
+	.right{background:pink;-webkit-transform:translateZ(-150px) rotateY(90deg);-webkit-transform-origin:right center;}
+	.bottom{background:orange;-webkit-transform:translateZ(150px) rotateX(90deg);-webkit-transform-origin:bottom center;}
+	.front{background:green;-webkit-transform:translateZ(150px);}
+	#box:active{-webkit-transform:rotateX(180deg) rotateY(270deg);}
+	
+</style>
+</head>
+
+<body>
+<div id="box">
+	<div class="top">上</div>
+    <div class="bottom">下</div>
+    <div class="left">左</div>
+    <div class="right">右</div>
+    <div class="front">前</div>
+    <div class="back">后</div>
+</div>
+</body>
+</html>
