@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+	<style>
+    	*{padding:0;margin:0;}
+		#box{width:680px;height:344px;background:url(images/2.jpg) no-repeat;margin:100px auto;-webkit-transform-style:preserve-3d;-webkit-transform:perpective(800px);}
+		.box span{ position:absolute; -webkit-transform-style:preserve-3d; -webkit-transform:perspective(800px) rotateY(0deg);}
+		.box span em{position:absolute; top:0;left:0; width:100%; height:100%;}
+		.box span .front{-webkit-transform:translateZ(1px);}
+		.box span .back{-webkit-transform:translateZ(-1px) scale(-1,1);}
+		
+    </style>
+    <script>
+    	window.onload=function(){
+			var oBtn=document.getElementById('btn');
+			var oBox=document.getElementById('box');
+			var Row=4;
+			var Col=8;
+			for(var i=0;i<Row;i++){
+				for(var j=0;j<Col;j++){
+					var oSpan=document.createElement('span');
+					oSpan.innerHTML='<em class="front"></em><em class="back"></em>';
+					var oF=oSpan.children[0];
+					var oB=oSpan.children[1];
+					oSpan.style.width=oBox.offsetWidth/Col+'px';
+					oSpan.style.height=oBox.offsetHeight/Row+'px';
+					oBox.appendChild(oSpan);
+					oSpan.style.left = j*oSpan.offsetWidth+'px';
+					oSpan.style.top = i*oSpan.offsetHeight+'px';
+					oF.style.background='url(images/1.jpg) no-repeat '+-j*oSpan.offsetWidth+'px '+-i*oSpan.offsetHeight+'px';	
+					oB.style.background='url(images/2.jpg) no-repeat '+-j*oSpan.offsetWidth+'px '+-i*oSpan.offsetHeight+'px';	
+					oSpan.r = i;
+					oSpan.c = j;
+				}	
+			}
+			var aS=oBox.children;
+			oBtn.onclick=function(){
+				for(var i=0;i<aS.length;i++){
+					(function(index){
+						setTimeout(function(){
+							aS[index].style.WebkitTransition='1s all ease';	
+							aS[index].style.WebkitTransform='perspective(800px) rotateY(180deg)';
+						},(aS[i].c+aS[i].r)*100);
+					})(i);
+				}
+			};
+		};
+    </script>
+</head>
+
+<body>
+	<input type="button" value="翻转" id="btn" />
+	<div id="box"></div>
+</body>
+</html>
